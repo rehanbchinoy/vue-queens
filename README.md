@@ -1,6 +1,24 @@
-# vue-queens
+# Vue Queens
 
-This template should help get you started developing with Vue 3 in Vite.
+A strategic puzzle game built with Vue.js where you place queens on a chess board so that no queen can attack another queen.
+
+## Play the Game
+
+Visit: https://rehanbchinoy.github.io/vue-queens/
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Build for Production
+
+```bash
+npm run build
+npm run preview
+```
 
 ## Recommended IDE Setup
 
@@ -9,24 +27,6 @@ This template should help get you started developing with Vue 3 in Vite.
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
 
 ### Lint with [ESLint](https://eslint.org/)
 
