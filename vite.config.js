@@ -10,7 +10,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
-  base: "/vue-queens/",
+  base: "/vue-queens/", // Configured for standalone GitHub Pages deployment
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
