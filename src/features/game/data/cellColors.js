@@ -1,10 +1,10 @@
 export const cellColors = {
-    1: "#007B6C",
-    2: "#D18B00",
-    3: "#C75D00",
-    4: "#0044CC",
-    5: "#CC0000",
-    6: "#CCCC00",
-    7: "#008B8B",
-    8: "#8B008B",
+    1: "#B8D4E3", // Medium blue
+    2: "#C8E6C9", // Light green
+    3: "#FFE0B2", // Light orange
+    4: "#D1C4E9", // Lavender purple
+    5: "#FFAB91", // Coral orange
+    6: "#FFF9C4", // Light yellow
+    7: "#B3E5FC", // Light cyan
+    8: "#F8BBD9", // Light pink
   };

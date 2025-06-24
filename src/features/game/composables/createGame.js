@@ -1,8 +1,14 @@
 import { ref, computed } from 'vue'
-import { easy as sectionGrid } from '@/features/game/data/sectionGrid'
+import { easy, medium, hard } from '@/features/game/data/sectionGrid'
 
-function createBoard() {
-  return sectionGrid.map((row) =>
+const difficulties = {
+  easy,
+  medium,
+  hard
+}
+
+function createBoard(grid) {
+  return grid.map((row) =>
     row.map((section) => ({
       content: null,
       section
@@ -11,8 +17,17 @@ function createBoard() {
 }
 
 export function createGame() {
-  const boardState = ref(createBoard())
+  const currentDifficulty = ref('medium')
+  const boardState = ref(createBoard(difficulties[currentDifficulty.value]))
   const queens = ref([])
+
+  function changeDifficulty(difficulty) {
+    if (difficulties[difficulty]) {
+      currentDifficulty.value = difficulty
+      boardState.value = createBoard(difficulties[difficulty])
+      queens.value = []
+    }
+  }
 
   function resetValidations() {
     queens.value.forEach((queen) => (queen.valid = true))
@@ -50,6 +65,7 @@ export function createGame() {
     }
     return true
   }
+
   function checkDiagonalConflicts(queen) {
     const directions = [
       [-1, -1],
@@ -102,6 +118,7 @@ export function createGame() {
       (queen) => queen.row === rowIndex && queen.col === cellIndex && !queen.valid
     )
   }
+
   function toggleCell(rowIndex, cellIndex) {
     const cell = boardState.value[rowIndex][cellIndex]
 
@@ -128,7 +145,8 @@ export function createGame() {
   }
 
   const gameWon = computed(() => {
-    if (queens.value.length !== sectionGrid.length) {
+    const currentGrid = difficulties[currentDifficulty.value]
+    if (queens.value.length !== currentGrid.length) {
       return false
     }
 
@@ -137,10 +155,12 @@ export function createGame() {
 
   return {
     boardState,
+    currentDifficulty,
     toggleCell,
     queens,
     isValidQueen,
     clearBoard,
+    changeDifficulty,
     gameWon
   }
 }

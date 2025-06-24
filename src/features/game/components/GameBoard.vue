@@ -1,17 +1,35 @@
 <script setup>
-import { onMounted } from "vue";
+import { ref } from "vue";
 import GridCell from "@/features/game/components/GridCell.vue";
 import { createGame } from "@/features/game/composables/createGame";
 import WinMessage from "@/features/game/components/WinMessage.vue";
 import AppTimer from "@/features/timer/components/AppTimer.vue";
 import { useTimer } from "@/features/timer/composables/useTimer";
 import AppButton from "@/components/AppButton.vue";
+import DifficultySelector from "@/features/game/components/DifficultySelector.vue";
 import { cellColors } from "@/features/game/data/cellColors.js";
 
-const { boardState, gameWon, isValidQueen, toggleCell, clearBoard } = createGame();
+const { 
+  boardState, 
+  gameWon, 
+  isValidQueen, 
+  toggleCell, 
+  clearBoard, 
+  currentDifficulty,
+  changeDifficulty 
+} = createGame();
+
 const { startTimer, stopTimer, resetTimer } = useTimer();
 
+const hasStarted = ref(false);
+
 function handleToggleCell(rowIndex, cellIndex) {
+  // Start timer on first click if not already started
+  if (!hasStarted.value) {
+    startTimer();
+    hasStarted.value = true;
+  }
+
   toggleCell(rowIndex, cellIndex);
 
   if (gameWon.value) {
@@ -22,14 +40,21 @@ function handleToggleCell(rowIndex, cellIndex) {
 function resetGame() {
   clearBoard();
   resetTimer();
+  hasStarted.value = false;
 }
 
-onMounted(() => {
-  startTimer();
-});
+function handleDifficultyChange(difficulty) {
+  changeDifficulty(difficulty);
+  resetTimer();
+  hasStarted.value = false;
+}
 </script>
 
 <template>
+  <DifficultySelector 
+    :current-difficulty="currentDifficulty" 
+    :change-difficulty="handleDifficultyChange" 
+  />
   <div class="game-board">
     <template v-for="(row, rowIndex) in boardState">
       <GridCell
@@ -52,8 +77,10 @@ onMounted(() => {
 .game-board {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(8, 42px);
-  grid-template-rows: repeat(8, 42px);
-  border: 1px solid #000;
+  grid-template-columns: repeat(8, 55px);
+  grid-template-rows: repeat(8, 55px);
+  border: 2px solid #2c3e50;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 </style>

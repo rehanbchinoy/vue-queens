@@ -4,7 +4,7 @@ import { vConfetti } from "@neoconfetti/vue";
 
 <template>
   <span v-confetti />
-  <div class="win-message">Congratulations! You have won the game! 🎉</div>
+  <div class="win-message">Congratulations - you have won the game. 🤝</div>
 </template>
 
 <style scoped>

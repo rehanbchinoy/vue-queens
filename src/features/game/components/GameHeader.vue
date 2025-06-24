@@ -1,24 +1,24 @@
 <template>
   <div class="header">
-    <h1>A Game of Queens</h1>
-    <p>Have fun. Always.</p>
+    <h1>Queens</h1>
   </div>
 </template>
 
 <style>
 .header {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .header h1 {
-  color: #e39fff;
-  font-size: 24px;
-  font-weight: 200;
+  color: #1e3a8a;
+  font-size: 28px;
+  font-weight: 600;
   margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .header p {
-  color: #bfbfbf;
+  color: #64748b;
 }
 </style>
