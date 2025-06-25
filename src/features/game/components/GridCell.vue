@@ -11,7 +11,7 @@ defineProps(["content", "color", "invalid"]);
 
 <style scoped>
 .cell {
-  font-size: 32px;
+  font-size: var(--cell-font-size, 32px);
   border: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
@@ -50,8 +50,39 @@ defineProps(["content", "color", "invalid"]);
 }
 
 .queen {
-  width: 32px;
-  height: 32px;
+  width: var(--queen-size, 32px);
+  height: var(--queen-size, 32px);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Mobile responsive breakpoints */
+@media (max-width: 480px) {
+  .cell {
+    --cell-font-size: 20px;
+  }
+  
+  .queen {
+    --queen-size: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .cell {
+    --cell-font-size: 18px;
+  }
+  
+  .queen {
+    --queen-size: 18px;
+  }
+}
+
+@media (max-width: 320px) {
+  .cell {
+    --cell-font-size: 16px;
+  }
+  
+  .queen {
+    --queen-size: 16px;
+  }
 }
 </style>

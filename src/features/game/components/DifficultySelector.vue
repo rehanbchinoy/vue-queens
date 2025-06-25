@@ -54,6 +54,7 @@ defineProps({
   display: flex;
   gap: 10px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .difficulty-btn {
@@ -78,5 +79,31 @@ defineProps({
   border-color: #1e3a8a;
   background: #1e3a8a;
   color: white;
+}
+
+/* Mobile responsive breakpoints */
+@media (max-width: 480px) {
+  .difficulty-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .difficulty-btn {
+    min-width: 120px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .difficulty-selector h3 {
+    font-size: 14px;
+  }
+  
+  .difficulty-btn {
+    font-size: 13px;
+    min-width: 100px;
+    padding: 8px 12px;
+  }
 }
 </style> 

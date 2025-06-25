@@ -23,7 +23,8 @@
 
 <style scoped>
 .instructions {
-  width: 320px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .instructions h2 {
@@ -38,6 +39,7 @@
 .instructions li {
   font-size: 14px;
   margin-bottom: 10px;
+  line-height: 1.5;
 }
 
 .queen,
@@ -46,5 +48,38 @@
   height: 14px;
   position: relative;
   top: 1px;
+}
+
+/* Mobile responsive breakpoints */
+@media (max-width: 480px) {
+  .instructions h2 {
+    font-size: 15px;
+  }
+  
+  .instructions li {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  
+  .queen,
+  .x-mark {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .instructions h2 {
+    font-size: 14px;
+  }
+  
+  .instructions li {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  
+  .instructions ol {
+    padding-left: 16px;
+  }
 }
 </style>

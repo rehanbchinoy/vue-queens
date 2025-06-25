@@ -32,6 +32,8 @@ const { formattedTime, isRunning, isPaused, pauseTimer, resumeTimer } = useTimer
   align-items: center;
   gap: 15px;
   margin: 15px 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .timer {
@@ -83,5 +85,37 @@ const { formattedTime, isRunning, isPaused, pauseTimer, resumeTimer } = useTimer
 
 .timer-button.resume:hover {
   background: #2ecc71;
+}
+
+/* Mobile responsive breakpoints */
+@media (max-width: 480px) {
+  .timer-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .timer {
+    font-size: 15px;
+    padding: 6px 10px;
+  }
+  
+  .timer-button {
+    width: 90px;
+    height: 40px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .timer {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+  
+  .timer-button {
+    width: 80px;
+    height: 36px;
+    font-size: 12px;
+  }
 }
 </style>

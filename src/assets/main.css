@@ -20,4 +20,33 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Mobile responsive breakpoints */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  #app {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    font-size: 13px;
+  }
+  
+  #app {
+    padding: 12px;
+  }
 }

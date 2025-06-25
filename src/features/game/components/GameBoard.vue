@@ -69,18 +69,49 @@ function handleDifficultyChange(difficulty) {
   </div>
   <WinMessage v-if="gameWon" />
   <AppTimer />
-  <AppButton @click="resetGame">Reset Game</AppButton>
-  <AppButton @click="clearBoard">Clear Board</AppButton>
+  <div class="button-group">
+    <AppButton @click="resetGame">Reset Game</AppButton>
+    <AppButton @click="clearBoard">Clear Board</AppButton>
+  </div>
 </template>
 
 <style scoped>
 .game-board {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(8, 55px);
-  grid-template-rows: repeat(8, 55px);
+  grid-template-columns: repeat(8, var(--cell-size, 55px));
+  grid-template-rows: repeat(8, var(--cell-size, 55px));
   border: 2px solid #2c3e50;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Mobile responsive breakpoints */
+@media (max-width: 480px) {
+  .game-board {
+    --cell-size: 35px;
+  }
+}
+
+@media (max-width: 360px) {
+  .game-board {
+    --cell-size: 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .game-board {
+    --cell-size: 28px;
+  }
 }
 </style>
