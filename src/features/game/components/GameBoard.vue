@@ -6,6 +6,7 @@ import GridCell from './GridCell.vue'
 import WinMessage from './WinMessage.vue'
 import AppTimer from '../../timer/components/AppTimer.vue'
 import { decodeBoardState } from '../utils/shareUtils.js'
+import { cellColors } from '../data/cellColors.js'
 
 const { 
   boardState, 
@@ -79,8 +80,9 @@ onMounted(() => {
           <GridCell
             v-for="(cell, cellIndex) in row"
             :key="`${rowIndex}-${cellIndex}`"
-            :cell="cell"
-            :is-valid="isValidQueen(rowIndex, cellIndex)"
+            :content="cell.content"
+            :color="cellColors[cell.section]"
+            :invalid="isValidQueen(rowIndex, cellIndex)"
             @click="handleToggleCell(rowIndex, cellIndex)"
           />
         </template>
