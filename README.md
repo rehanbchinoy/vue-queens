@@ -1,10 +1,51 @@
-# Queens - A Strategic Puzzle Game
+# Vue Queens
 
-A modern web implementation of the classic N-Queens puzzle, built with Vue 3 and Vite. Place queens on the chess board so that no queen can attack another queen - a timeless algorithmic challenge that's both engaging and educational.
+A Vue.js implementation of the classic 8 Queens puzzle game with modern UI and interactive features.
 
-## 🎮 Play the Game
+## Features
 
-**[Play Queens Online](https://rehanchinoy.github.io/vue-queens/)**
+- **Interactive Game Board**: Click cells to place queens and solve the puzzle
+- **Multiple Difficulty Levels**: Easy, Medium, and Hard with different board configurations
+- **Real-time Validation**: Visual feedback for invalid queen placements
+- **Timer**: Track your solving time
+- **Share Functionality**: Share completed puzzles with friends
+- **Responsive Design**: Works on desktop and mobile devices
+- **Modern UI**: Clean, intuitive interface with smooth animations
+
+## How to Play
+
+1. **Place Queens**: Click on empty cells to place queens
+2. **Follow Rules**: Queens cannot attack each other (same row, column, diagonal, or section)
+3. **Solve the Puzzle**: Place exactly 8 queens on the board
+4. **Share Your Solution**: Click "Share Puzzle" when you win to share with friends
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## Deployment
+
+This project is automatically deployed to GitHub Pages via GitHub Actions. The live demo is available at:
+https://rehanbchinoy.github.io/vue-queens/
+
+## Technologies Used
+
+- Vue 3 with Composition API
+- Vite for build tooling
+- CSS Grid for responsive layout
+- GitHub Actions for CI/CD
 
 ## 🎯 Game Rules
 
