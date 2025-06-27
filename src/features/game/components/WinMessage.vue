@@ -22,7 +22,7 @@ const props = defineProps({
 const shareStatus = ref(""); // "success", "error", or empty
 
 async function handleShare() {
-  const shareUrl = generateShareUrl(props.boardState, props.difficulty);
+  const shareUrl = generateShareUrl(props.boardState, props.difficulty, props.completionTime);
   const shareText = `Queens (${props.completionTime})\n${shareUrl}`;
   const success = await copyToClipboard(shareText);
   
