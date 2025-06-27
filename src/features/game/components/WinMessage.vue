@@ -12,6 +12,10 @@ const props = defineProps({
   difficulty: {
     type: String,
     required: true
+  },
+  completionTime: {
+    type: String,
+    required: true
   }
 });
 
@@ -19,7 +23,8 @@ const shareStatus = ref(""); // "success", "error", or empty
 
 async function handleShare() {
   const shareUrl = generateShareUrl(props.boardState, props.difficulty);
-  const success = await copyToClipboard(shareUrl);
+  const shareText = `Queens (${props.completionTime})\n${shareUrl}`;
+  const success = await copyToClipboard(shareText);
   
   if (success) {
     shareStatus.value = "success";
@@ -38,7 +43,7 @@ async function handleShare() {
 <template>
   <span v-confetti />
   <div class="win-container">
-    <div class="win-message">Congratulations - you have won the game!</div>
+    <div class="win-message">Congratulations!</div>
     <div class="share-section">
       <AppButton @click="handleShare" class="share-button">
         {{ shareStatus === 'success' ? 'Copied!' : 'Share Puzzle' }}

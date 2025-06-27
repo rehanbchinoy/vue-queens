@@ -21,7 +21,7 @@ const {
   loadSharedPuzzle
 } = createGame();
 
-const { startTimer, stopTimer, resetTimer } = useTimer();
+const { startTimer, stopTimer, resetTimer, currentTime } = useTimer();
 
 const hasStarted = ref(false);
 
@@ -89,6 +89,7 @@ onMounted(() => {
     v-if="gameWon" 
     :board-state="boardState"
     :difficulty="currentDifficulty"
+    :completion-time="currentTime"
   />
   <AppTimer />
   <div class="button-group">
