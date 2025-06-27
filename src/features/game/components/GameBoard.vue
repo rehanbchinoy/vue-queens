@@ -69,9 +69,6 @@ onMounted(() => {
           {{ difficulty.charAt(0).toUpperCase() + difficulty.slice(1) }}
         </button>
       </div>
-      <div v-if="targetTime" class="target-time">
-        Target: {{ targetTime }}
-      </div>
     </div>
     
     <div class="board-container">
@@ -86,6 +83,9 @@ onMounted(() => {
             @click="handleToggleCell(rowIndex, cellIndex)"
           />
         </template>
+      </div>
+      <div v-if="targetTime" class="completion-time">
+        Completed in: {{ targetTime }}
       </div>
     </div>
     
@@ -161,7 +161,9 @@ onMounted(() => {
 
 .board-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .grid {
@@ -173,6 +175,17 @@ onMounted(() => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   gap: 0;
   width: fit-content;
+}
+
+.completion-time {
+  font-size: 1.2rem;
+  color: #27ae60;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid #27ae60;
 }
 
 .game-controls {
