@@ -11,6 +11,8 @@ defineProps(["content", "color", "invalid"]);
 
 <style scoped>
 .cell {
+  width: 100%;
+  height: 100%;
   font-size: var(--cell-font-size, 32px);
   border: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
@@ -20,6 +22,7 @@ defineProps(["content", "color", "invalid"]);
   user-select: none;
   transition: all 0.3s ease;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .cell:hover {

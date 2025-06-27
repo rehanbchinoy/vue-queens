@@ -86,6 +86,8 @@ function handleDifficultyChange(difficulty) {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   max-width: 100%;
   margin: 0 auto;
+  gap: 0;
+  width: fit-content;
 }
 
 .button-group {
