@@ -29,6 +29,36 @@ export function createGame() {
     }
   }
 
+  function loadSharedPuzzle(difficulty, sharedBoardState) {
+    if (difficulties[difficulty]) {
+      currentDifficulty.value = difficulty
+      
+      // Create a new board with the correct sections
+      const newBoard = createBoard(difficulties[difficulty])
+      
+      // Apply the shared content while preserving the correct sections
+      boardState.value = newBoard.map((row, rowIndex) =>
+        row.map((cell, colIndex) => ({
+          ...cell,
+          content: sharedBoardState[rowIndex][colIndex].content
+        }))
+      )
+      
+      // Rebuild the queens array
+      queens.value = []
+      boardState.value.forEach((row, rowIndex) => {
+        row.forEach((cell, colIndex) => {
+          if (cell.content === 'queen') {
+            queens.value.push({ row: rowIndex, col: colIndex, valid: true })
+          }
+        })
+      })
+      
+      // Validate the loaded board
+      validateBoard()
+    }
+  }
+
   function resetValidations() {
     queens.value.forEach((queen) => (queen.valid = true))
   }
@@ -161,6 +191,7 @@ export function createGame() {
     isValidQueen,
     clearBoard,
     changeDifficulty,
+    loadSharedPuzzle,
     gameWon
   }
 }

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import GridCell from "@/features/game/components/GridCell.vue";
 import { createGame } from "@/features/game/composables/createGame";
 import WinMessage from "@/features/game/components/WinMessage.vue";
@@ -8,6 +8,7 @@ import { useTimer } from "@/features/timer/composables/useTimer";
 import AppButton from "@/components/AppButton.vue";
 import DifficultySelector from "@/features/game/components/DifficultySelector.vue";
 import { cellColors } from "@/features/game/data/cellColors.js";
+import { decodeBoardState } from "@/features/game/utils/shareUtils.js";
 
 const { 
   boardState, 
@@ -16,7 +17,8 @@ const {
   toggleCell, 
   clearBoard, 
   currentDifficulty,
-  changeDifficulty 
+  changeDifficulty,
+  loadSharedPuzzle
 } = createGame();
 
 const { startTimer, stopTimer, resetTimer } = useTimer();
@@ -48,6 +50,22 @@ function handleDifficultyChange(difficulty) {
   resetTimer();
   hasStarted.value = false;
 }
+
+// Load shared puzzle from URL parameters
+onMounted(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const puzzleParam = urlParams.get('puzzle');
+  
+  if (puzzleParam) {
+    const decoded = decodeBoardState(puzzleParam);
+    if (decoded) {
+      loadSharedPuzzle(decoded.difficulty, decoded.boardState);
+      // Clear the URL parameter after loading
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
+    }
+  }
+});
 </script>
 
 <template>
@@ -67,7 +85,11 @@ function handleDifficultyChange(difficulty) {
       />
     </template>
   </div>
-  <WinMessage v-if="gameWon" />
+  <WinMessage 
+    v-if="gameWon" 
+    :board-state="boardState"
+    :difficulty="currentDifficulty"
+  />
   <AppTimer />
   <div class="button-group">
     <AppButton @click="resetGame">Reset Game</AppButton>
