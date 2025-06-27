@@ -1,6 +1,71 @@
 # Vue Queens
 
-A Vue.js implementation of the classic 8 Queens puzzle game with modern UI and interactive features.
+A Vue.js implementation of the classic Queens puzzle game.
+
+## Features
+
+- Interactive 8x8 grid game board
+- Three difficulty levels (Easy, Medium, Hard)
+- Timer functionality
+- Share puzzle functionality
+- Responsive design
+- Win detection and celebration
+
+## Game Rules
+
+The goal is to place queens on the board so that no two queens can attack each other. Queens can move:
+- Horizontally and vertically (any number of squares)
+- Diagonally (any number of squares)
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+## Deployment
+
+This project is configured for automatic deployment to GitHub Pages via GitHub Actions.
+
+The game is deployed at: https://rehanbchinoy.github.io/vue-queens/
+
+## Technologies Used
+
+- Vue 3 with Composition API
+- Vite for build tooling
+- Vue Router for navigation
+- CSS Grid for the game board layout
+
+## Project Structure
+
+```
+src/
+├── components/          # Shared components
+├── features/           # Feature-based organization
+│   ├── game/          # Game logic and components
+│   ├── help/          # Help and instructions
+│   └── timer/         # Timer functionality
+├── router/            # Vue Router configuration
+├── views/             # Page components
+└── assets/            # Static assets
+```
+
+## Recent Update
+
+Updated deployment configuration and fixed any potential loading issues.
 
 ## Features
 
@@ -18,34 +83,6 @@ A Vue.js implementation of the classic 8 Queens puzzle game with modern UI and i
 2. **Follow Rules**: Queens cannot attack each other (same row, column, diagonal, or section)
 3. **Solve the Puzzle**: Place exactly 8 queens on the board
 4. **Share Your Solution**: Click "Share Puzzle" when you win to share with friends
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-## Deployment
-
-This project is automatically deployed to GitHub Pages via GitHub Actions. The live demo is available at:
-https://rehanbchinoy.github.io/vue-queens/
-
-## Technologies Used
-
-- Vue 3 with Composition API
-- Vite for build tooling
-- CSS Grid for responsive layout
-- GitHub Actions for CI/CD
 
 ## 🎯 Game Rules
 
