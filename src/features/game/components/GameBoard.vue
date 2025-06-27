@@ -24,6 +24,17 @@ const { startTimer, stopTimer, formattedTime } = useTimer();
 
 const hasStarted = ref(false);
 
+function formatTime(time) {
+  if (!time) return '--:--';
+  if (typeof time === 'string' && time.includes(':')) return time;
+  // If time is a number (seconds), format as mm:ss
+  const t = typeof time === 'number' ? time : parseInt(time, 10);
+  if (isNaN(t)) return '--:--';
+  const m = Math.floor(t / 60).toString().padStart(2, '0');
+  const s = (t % 60).toString().padStart(2, '0');
+  return `${m}:${s}`;
+}
+
 function handleToggleCell(rowIndex, cellIndex) {
   // Start timer on first click if not already started
   if (!hasStarted.value) {
@@ -85,7 +96,7 @@ onMounted(() => {
         </template>
       </div>
       <div v-if="targetTime" class="completion-time">
-        Completed in: {{ targetTime }}
+        Completed in: {{ formatTime(targetTime) }}
       </div>
     </div>
     

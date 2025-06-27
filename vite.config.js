@@ -10,7 +10,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
-  base: "/vue-queens/", // Use the correct base path for GitHub Pages
+  base: "/", // Use root base path for hash routing
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
