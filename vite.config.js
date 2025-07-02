@@ -10,7 +10,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
-  base: "/", // Use root base path for hash routing
+  base: '/vue-queens/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
