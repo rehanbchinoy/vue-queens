@@ -5,7 +5,6 @@ import { useTimer } from '../../timer/composables/useTimer.js'
 import GridCell from './GridCell.vue'
 import WinMessage from './WinMessage.vue'
 import AppTimer from '../../timer/components/AppTimer.vue'
-import { decodeBoardState } from '../utils/shareUtils.js'
 import { cellColors } from '../data/cellColors.js'
 
 const { 
@@ -15,25 +14,14 @@ const {
   isValidQueen, 
   clearBoard, 
   changeDifficulty, 
-  loadSharedPuzzle, 
-  targetTime,
   gameWon 
 } = createGame();
 
-const { startTimer, stopTimer, formattedTime } = useTimer();
+const { startTimer, stopTimer, resetTimer, formattedTime } = useTimer();
 
 const hasStarted = ref(false);
 
-function formatTime(time) {
-  if (!time) return '--:--';
-  if (typeof time === 'string' && time.includes(':')) return time;
-  // If time is a number (seconds), format as mm:ss
-  const t = typeof time === 'number' ? time : parseInt(time, 10);
-  if (isNaN(t)) return '--:--';
-  const m = Math.floor(t / 60).toString().padStart(2, '0');
-  const s = (t % 60).toString().padStart(2, '0');
-  return `${m}:${s}`;
-}
+
 
 function handleToggleCell(rowIndex, cellIndex) {
   // Start timer on first click if not already started
@@ -49,19 +37,21 @@ function handleToggleCell(rowIndex, cellIndex) {
   }
 }
 
-// Load shared puzzle from URL parameters
+function handleClearBoard() {
+  clearBoard();
+  resetTimer();
+  hasStarted.value = false;
+}
+
+// Clear shared puzzle URL parameter (but don't load the puzzle)
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search);
   const puzzleParam = urlParams.get('puzzle');
   
   if (puzzleParam) {
-    const decoded = decodeBoardState(puzzleParam);
-    if (decoded) {
-      loadSharedPuzzle(decoded.difficulty, decoded.boardState, decoded.completionTime);
-      // Clear the URL parameter after loading
-      const newUrl = window.location.pathname;
-      window.history.replaceState({}, document.title, newUrl);
-    }
+    // Just clear the URL parameter to show the regular game start page
+    const newUrl = window.location.pathname;
+    window.history.replaceState({}, document.title, newUrl);
   }
 });
 </script>
@@ -95,13 +85,11 @@ onMounted(() => {
           />
         </template>
       </div>
-      <div v-if="targetTime" class="completion-time">
-        Completed in: {{ formatTime(targetTime) }}
-      </div>
+
     </div>
     
     <div class="game-controls">
-      <button @click="clearBoard" class="clear-btn">Clear Board</button>
+      <button @click="handleClearBoard" class="clear-btn">Clear Board</button>
     </div>
     
     <WinMessage 

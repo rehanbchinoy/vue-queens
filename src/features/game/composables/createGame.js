@@ -20,47 +20,16 @@ export function createGame() {
   const currentDifficulty = ref('medium')
   const boardState = ref(createBoard(difficulties[currentDifficulty.value]))
   const queens = ref([])
-  const targetTime = ref(null)
 
   function changeDifficulty(difficulty) {
     if (difficulties[difficulty]) {
       currentDifficulty.value = difficulty
       boardState.value = createBoard(difficulties[difficulty])
       queens.value = []
-      targetTime.value = null
     }
   }
 
-  function loadSharedPuzzle(difficulty, sharedBoardState, completionTime) {
-    if (difficulties[difficulty]) {
-      currentDifficulty.value = difficulty
-      targetTime.value = completionTime
-      
-      // Create a new board with the correct sections
-      const newBoard = createBoard(difficulties[difficulty])
-      
-      // Apply the shared content while preserving the correct sections
-      boardState.value = newBoard.map((row, rowIndex) =>
-        row.map((cell, colIndex) => ({
-          ...cell,
-          content: sharedBoardState[rowIndex][colIndex].content
-        }))
-      )
-      
-      // Rebuild the queens array
-      queens.value = []
-      boardState.value.forEach((row, rowIndex) => {
-        row.forEach((cell, colIndex) => {
-          if (cell.content === 'queen') {
-            queens.value.push({ row: rowIndex, col: colIndex, valid: true })
-          }
-        })
-      })
-      
-      // Validate the loaded board
-      validateBoard()
-    }
-  }
+
 
   function resetValidations() {
     queens.value.forEach((queen) => (queen.valid = true))
@@ -194,8 +163,6 @@ export function createGame() {
     isValidQueen,
     clearBoard,
     changeDifficulty,
-    loadSharedPuzzle,
-    targetTime,
     gameWon
   }
 }
